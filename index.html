@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form id = "calculator" name="calculator">
+        <section>
+            <output type="text" name="outdisplay" id="outdisplay"></output>
+            <input type="text" name="display" id="display" />
+
+        </section>
+
+        <section id="keypad">
+            <input type="button"  class="num" value="9" onclick="addNum(9)">
+            <input type="button"  class="num" value="8" onclick="addNum(8)">
+            <input type="button"  class="num" value="7" onclick="addNum(7)">
+            <input type="button"  class="operator" value="+" onclick="calcInput('soma')">
+
+            <input type="button"  class="num" value="6" onclick="addNum(6)">
+            <input type="button"  class="num" value="5" onclick="addNum(5)">
+            <input type="button"  class="num" value="4" onclick="addNum(4)">
+            <input type="button"  class="operator" value="-" onclick="calcInput('subtrai')">
+
+            <input type="button"  class="num" value="3" onclick="addNum(3)">
+            <input type="button"  class="num" value="2" onclick="addNum(2)">
+            <input type="button"  class="num" value="1" onclick="addNum(1)">
+            <input type="button"  class="operator" value="-" onclick="calcInput('multiplica')">
+
+            <input type="button"  class="num" value="0" onclick="addNum(0)">
+            <input type="button"  class="num" value="=" onclick="calcInput('resultado')">
+            <input type="button"  class="num" value="AC" onclick="calcClear()">
+            <input type="button"  class="operator" value="÷" onclick="calcInput('divide')">
+        
+        
+        </section>
+
+
+    </form>
+    <script src="scripts.js"></script>
+</body>
+</html>
