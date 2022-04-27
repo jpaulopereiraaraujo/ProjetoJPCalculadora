@@ -21,31 +21,29 @@ function tratamentoString(disp){
 function calcResultado(){
     document.calculator.outdisplay.value = document.calculator.display.value + " = " + " resultado";
     tratamentoString(document.calculator.display.value)
-    calcArray = []; 
+     
     i = 0;
+    stringArray ='';
     while (valueArray.length > i)
     {
         console.log(i);
         if (isNaN(valueArray[i]) == false || '+-÷/*x'.includes(valueArray[i]) == true)
         {
-            if (isNaN(valueArray[i] == false)){
-                if(i=0){
-                    calcArray.push(valueArray[i])
-                } else {
-                    
-                }
-                
-            } if (isNaN(valueArray[0]) == true ){
+            
+             if (isNaN(valueArray[0]) == true ){
                 alert('Atenção, a operação começa com um número e não com um operador')
                 calcLimpar();
-                i=valueArray.lengh + 1;
-                
+                i=valueArray.lengh + 1;    
+            } else {
+                if ('0123456789'.includes(valueArray[i]) == true){
+                    stringArray = stringArray + valueArray[i];
+                }
+                if ('+-÷/*x'.includes(valueArray[i]) == true ) {
+                    stringArray = stringArray  + ',' + valueArray[i] + ',';
+                }
             }
-            
-    
-    
-        }
-            
+                    
+        }   
          else 
         {
             alert('Atenção use apenas os caracteres de operação e números!!!')
@@ -56,8 +54,12 @@ function calcResultado(){
         i++;
         
     }
-    alert(calcArray);
-    
+    refinedArray = stringArray.split(',')
+    console.log(refinedArray);
+    j = 0;
+    while ( j < refinedArray.lengh ) {
+        
+    }
 
 }
 
