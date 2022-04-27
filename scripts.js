@@ -1,59 +1,49 @@
-//Adiciona números ao display
-function addNum(num){
-    if(typeof globalDisplay =='undefined'){
-        document.calculator.display.value='';
-    }
-    document.calculator.display.value = document.calculator.display.value + num;
-    globalDisplay = 0;
+//Adiciona valores ao display
+function readValue(valor){
+    document.calculator.display.value = document.calculator.display.value + valor;
 }
 
-//Função para global>local(resultado)
-function calcInput(operator) {
-    var value = document.calculator.display.value;
-    delete globalDisplay;
-
-    if ( typeof globalOperator != 'undefined' &&  operator == 'resultado'){
-        globalValue = calcOperator(globalOperator, globalValue, value);
-        document.calculator.display.value = globalValue;
-        delete operator;
-        delete globalValue;
-    }
-
-    if (typeof globalValue != 'undefined'){
-        globalValue = calcOperator(globalOperator, globalValue, value);
-        globalOperator = operator;
-        document.calculator.display.value = globalValue;
-    } else {
-        globalValue = value;
-        globalOperator = operator;
-    }
-
+//Limpa o display
+function calcLimpar(){
+    document.calculator.display.value ='';
 }
 
-//Operações Básicas
+//Convertendo a string em array
 
-function calcOperator(operator, value1, value2){
-    if (operator == "soma"){
-        var value = parseFloat(value1) + parseFloat(value2);
-    }else{
-        if(operator == "subtrai"){
-            var value = parseFloat(value1) - parseFloat(value2);
-        } else {
-            if (operator == "multiplica"){
-                var value = parseFloat(value1) * parseFloat(value2);
-            } else {
-                var value = parseFloat(value1)/parseFloat(value2);
-            }
+function tratamentoString(disp){
+    displayValue = disp;
+    valueArray = Array.from(disp);
+}
+
+
+//Função Calcular Resultado
+
+function calcResultado(){
+    document.calculator.outdisplay.value = document.calculator.display.value + " = " + " resultado";
+    tratamentoString(document.calculator.display.value)
+    //document.calculator.outdisplay.value = string1;
+    i = 0;
+    while (valueArray.length > i)
+    {
+        console.log(i);
+        if (isNaN(valueArray[i]) == false)
+        {
+            console.log("Tudo ok")
+    
+    
         }
+            
+         else 
+        {
+            console.log(valueArray[i] + ' não é número')
     }
-    return (value);
+        
+        i++;
+        
+    }
+    
+    console.log(valueArray);
+
 }
 
-//Função para AC
 
-function calcClear() {
-    document.calculator.display.value='';
-    delete globalValue;
-    delete globalDisplay;
-    delete globalOperator;
-}
