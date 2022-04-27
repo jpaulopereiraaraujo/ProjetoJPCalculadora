@@ -16,33 +16,48 @@ function tratamentoString(disp){
 }
 
 
-//Função Calcular Resultado
+//Função Calcular Resultado, tratamento da string e reorganização para cálculo
 
 function calcResultado(){
     document.calculator.outdisplay.value = document.calculator.display.value + " = " + " resultado";
     tratamentoString(document.calculator.display.value)
-    //document.calculator.outdisplay.value = string1;
+    calcArray = []; 
     i = 0;
     while (valueArray.length > i)
     {
         console.log(i);
-        if (isNaN(valueArray[i]) == false)
+        if (isNaN(valueArray[i]) == false || '+-÷/*x'.includes(valueArray[i]) == true)
         {
-            console.log("Tudo ok")
+            if (isNaN(valueArray[i] == false)){
+                if(i=0){
+                    calcArray.push(valueArray[i])
+                } else {
+                    
+                }
+                
+            } if (isNaN(valueArray[0]) == true ){
+                alert('Atenção, a operação começa com um número e não com um operador')
+                calcLimpar();
+                i=valueArray.lengh + 1;
+                
+            }
+            
     
     
         }
             
          else 
         {
-            console.log(valueArray[i] + ' não é número')
-    }
+            alert('Atenção use apenas os caracteres de operação e números!!!')
+            calcLimpar();
+            i=valueArray.lengh + 1;
+        }
         
         i++;
         
     }
+    alert(calcArray);
     
-    console.log(valueArray);
 
 }
 
