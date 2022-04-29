@@ -10,8 +10,11 @@
 <body>
     <form id = "calculator" name="calculator">
         <section>
-            <output type="text" name="outdisplay" id="outdisplay"></output>
-            <input type="text" name="display" id="display" />
+            <output type="text" name="outdisplay" id="outdisplay" 
+            style="text-align: right;"></output>
+            
+            <input type="text" name="display" id="display" 
+            style="text-align: right;"/>
 
         </section>
 
@@ -38,8 +41,8 @@
 
             
             <input type="button"  class="num" value="!" onclick="readValue('!')">
-            <input type="button"  class="num" value="a^b" onclick="readValue('a^b')">
-            <input type="button"  class="num" value="a√b" onclick="readValue('a√b')">
+            <input type="button"  class="num" value="a^b" onclick="readValue('^')">
+            <input type="button"  class="num" value="a√b" onclick="readValue('√')">
             <input type="button"  class="num" value="=" onclick="calcResultado()" >
         
         
