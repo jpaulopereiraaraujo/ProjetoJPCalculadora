@@ -30,21 +30,21 @@ function calcResultado(){
     while (valueArray.length > i)
     {
         console.log(i);
-        if (isNaN(valueArray[i]) == false || '+-÷/*x'.includes(valueArray[i]) == true)
+        if ('0123456789.'.includes(valueArray[i]) === true || '+-÷/*x'.includes(valueArray[i]) === true)
         {
             //Atenção o ponto primeiro é tratado como operador apenas para ser validado
             //logo após o ponto é tratado como número para que possa ser feita operações
             //decimais.
 
-             if (isNaN(valueArray[0]) == true ){
+             if ('+-÷/*x'.includes(valueArray[0]) === true ){
                 alert('Atenção, a operação começa com um número e não com um operador')
                 calcLimpar();
                 document.calculator.outdisplay.value = '';
                 break;    
             } else {
-                if ('0123456789.'.includes(valueArray[i]) == true){
+                if ('0123456789.'.includes(valueArray[i]) === true){
                     //Verifica se o usuário digitou mais de um ponto.
-                    if (valueArray[i+1] == '.' || valueArray[i-1] == '.'){
+                    if (valueArray[i] === '.' && valueArray[i+1] === valueArray[i] || valueArray[i-1] === valueArray[i]){
                         alert('Atenção, utilize apenas um ponto por número.')
                         calcLimpar();
                         document.calculator.outdisplay.value = '';
@@ -111,7 +111,8 @@ function calcResultado(){
     refinedArray = stringArray.split(',');
     console.log(refinedArray);
     j = 0;
-    
+    const h = (refinedArray[0].match(/./g) || []).length;
+    console.log(h);
     //Esse if irá percorrer o array em busca de um operador para definir a operação
     if (valueArray.length == i) {
         

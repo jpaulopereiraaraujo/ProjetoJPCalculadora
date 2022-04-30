@@ -55,13 +55,15 @@ body{
 }
 
 #keypad input{
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 60px;
+
     border: none;
-    border-radius: 50%;
+    border-radius: 20px ;
     cursor: pointer;
     background: white;
-    margin: 5px;
+    margin: 9px;
+    padding: 4px 4px 4px 4px;
 }
 
 #keypad input:hover {
