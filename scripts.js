@@ -7,7 +7,11 @@ function readValue(valor){
 function calcLimpar(){
     document.calculator.display.value ='';
 }
-
+function backSpace() {
+    oldTxt = document.calculator.display.value
+    newTxt = oldTxt.substring(0, oldTxt.length -1);
+    document.calculator.display.value = newTxt;
+}
 //Convertendo a string em array
 
 function tratamentoString(disp){
@@ -32,7 +36,7 @@ function calcResultado(){
         
         
         if ('0123456789.'.includes(valueArray[i]) === true 
-        || '+-÷/*xsct(!lnlog'.includes(valueArray[i]) === true
+        || '+-÷/*xsct(!lnloge%√^'.includes(valueArray[i]) === true
         )
         {
             //Atenção o ponto primeiro é tratado como operador apenas para ser validado
@@ -40,7 +44,7 @@ function calcResultado(){
             //decimais.
             
 
-             if ('+-÷/*x'.includes(valueArray[0]) === true
+             if ('+-÷/*x%√^'.includes(valueArray[0]) === true
              ){
                 alert('Atenção, a operação começa com um número e não com um operador')
                 calcLimpar();
@@ -62,9 +66,9 @@ function calcResultado(){
                     }
                     
                 }
-                if ('+-÷/*xsct(lnlog%^√!'.includes(valueArray[i]) === true
+                if ('+-÷/*xsct(lnlog%^√!e%'.includes(valueArray[i]) === true
                 ) {
-                    if ('sct(ln!'.includes(valueArray[i]) === true){
+                    if ('sct(lnlog!e'.includes(valueArray[i]) === true){
                         if ('0123456789'.includes(valueArray[i+1]) == true){
                             stringArray = stringArray + valueArray[i] + ',';
                         }else{
@@ -156,6 +160,34 @@ function calcResultado(){
 
     function lnFuncao (a) {
         resLn = Math.log(parseFloat(a));
+        return resLn;
+    }
+
+    function logFuncao (a) {
+        resLog = Math.log10(parseFloat(a));
+        return resLog;
+    }
+
+    function eFunction(){
+        
+        eResult = Math.E;
+        
+        return eResult;
+    }
+
+    function porcentagem(a, b){
+        resPorcent = parseFloat(a)/100*parseFloat(b);
+        return resPorcent;
+    }
+
+    function raizNum (a,b) {
+        raizResult = Math.pow(b, (1/a));
+        return raizResult;
+    }
+
+    function expNum (a,b) {
+        expResult = Math.pow(b, a);
+        return expResult;
     }
 
     
@@ -176,7 +208,7 @@ function calcResultado(){
         
         while( j < refinedArray.length){
             
-            if ('+-÷/*x!'.includes(refinedArray[j]) === true
+            if ('+-÷/*x!e%√^'.includes(refinedArray[j]) === true
             
             || refinedArray[j] === 's('
             || refinedArray[j] === 'c('
@@ -202,10 +234,25 @@ function calcResultado(){
                         firstResult = multiplicar(refinedArray[j-1],refinedArray[j+1]);
                     }
 
+                    else if ('%'.includes(refinedArray[j]) === true) {
+                        firstResult = porcentagem(refinedArray[j-1], refinedArray[j+1])
+                    }
+
+                    else if ('√'.includes(refinedArray[j])=== true) {
+                        firstResult = raizNum(refinedArray[j-1], refinedArray[j+1])
+                    }
+
+                    else if ('^'.includes(refinedArray[j])=== true) {
+                        firstResult = expNum(refinedArray[j-1], refinedArray[j+1])
+                    }
+
                     else if (refinedArray[j] === 's('
                     || refinedArray[j] === 'c('
                     || refinedArray[j] === 't('
                     || refinedArray[j] === '!'
+                    || refinedArray[j] === 'ln'
+                    || refinedArray[j] === 'log'
+                    || refinedArray[j] === 'e'
                     ){
                         if (refinedArray.length === 2){
                         
@@ -235,11 +282,19 @@ function calcResultado(){
 
                         }
 
-                        } else {
+                        
+                        } 
+                        else if ('e'.includes(refinedArray[j]) === true){
+                            firstResult = eFunction();
+
+                        }
+                        
+                        else {
                             alert('Atenção utilize apenas o operador e o número!!');
                             calcLimpar();
                             document.calculator.outdisplay.value = '';
                         }
+                        
                     }
              
                     interResult = firstResult;
@@ -269,9 +324,19 @@ function calcResultado(){
                     }
 
                     
-                    else {
-                        
-                    } 
+                    else if ('%'.includes(refinedArray[j]) === true) {
+                        finalResult = porcentagem(interResult, refinedArray[j+1]);
+                        interResult = finalResult;
+                    }
+
+                    else if ('√'.includes(refinedArray[j]) === true) {
+                        finalResult = raizNum(interResult, refinedArray[j+1]);
+                        interResult = finalResult;
+                    }
+
+                    else if ('^'.includes(refinedArray[j]) === true) {
+                        finalResult = expNum(interResult, refinedArray[j+1]);
+                    }
 
 
                 } 
