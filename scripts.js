@@ -342,7 +342,12 @@ function calcResultado(){
                 } 
                 
             } else if (isNaN(refinedArray[j]) == true){
-                alert("Atenção você utilizou um operador inválido")
+                if ('!'.includes(refinedArray[j]) === true){
+                    alert('Por favor inverta a operação')
+                } else {
+                    alert("Atenção você utilizou um operador inválido ou fora de ordem, tente : (!num) no lugar de (num!)")
+                }
+                
             } 
             //Aqui vai para funções sen cos tan e etc
             j++;
