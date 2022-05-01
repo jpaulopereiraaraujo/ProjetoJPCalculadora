@@ -6,9 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
-    <form id = "calculator" name="calculator">
+    <div class="banner">
+        <video autoplay muted loop>
+            <source src="background/backmatrix.webm" type="video/webm">
+        </video>
+        
+    
+
+        <form id = "calculator" name="calculator">
         <section>
             <output type="text" name="outdisplay" id="outdisplay" 
             style="text-align: right;"></output>
@@ -54,14 +62,18 @@
             <input type="button"  class="num" value="AC" onclick="calcLimpar()">
             <input type="button"  class="operator" value="÷" onclick="readValue('÷')">
 
-            
+        
             
         
         
-        </section>
-
-
-    </form>
+            </section>
+    
+        
+        </form>
+        
+    </div>
     <script src="scripts.js"></script>
+    
 </body>
+
 </html>
