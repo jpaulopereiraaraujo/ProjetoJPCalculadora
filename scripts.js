@@ -6,6 +6,7 @@ function readValue(valor){
 //Limpa o display
 function calcLimpar(){
     document.calculator.display.value ='';
+    document.calculator.outdisplay.value = ''
 }
 function backSpace() {
     oldTxt = document.calculator.display.value
@@ -293,6 +294,7 @@ function calcResultado(){
                             alert('Atenção utilize apenas o operador e o número!!');
                             calcLimpar();
                             document.calculator.outdisplay.value = '';
+                            
                         }
                         
                     }
@@ -354,9 +356,16 @@ function calcResultado(){
         }
     
     }
-    document.calculator.outdisplay.value = document.calculator.display.value + " = " +  finalResult;
-    console.log(finalResult);
-    finalResult = 0;
+    if (isNaN(finalResult) === true) {
+        document.calculator.outdisplay.value = '';
+        document.calculator.display.value = '';
+        alert('Oops, ocorreu um erro, talvez você tenha esquecido um operador ou número, tente novamente :)')
+    } else {
+        document.calculator.outdisplay.value = document.calculator.display.value + " = " +  finalResult;
+        finalResult = 0;
+    }
+    
+    
 
 }
 
