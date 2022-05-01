@@ -29,14 +29,19 @@ function calcResultado(){
     //estão ok e pre parando-a para se tornar um array [numero, operador, numero]
     while (valueArray.length > i)
     {
-        console.log(i);
-        if ('0123456789.'.includes(valueArray[i]) === true || '+-÷/*x'.includes(valueArray[i]) === true)
+        
+        
+        if ('0123456789.'.includes(valueArray[i]) === true 
+        || '+-÷/*xsct(!lnlog'.includes(valueArray[i]) === true
+        )
         {
             //Atenção o ponto primeiro é tratado como operador apenas para ser validado
             //logo após o ponto é tratado como número para que possa ser feita operações
             //decimais.
+            
 
-             if ('+-÷/*x'.includes(valueArray[0]) === true ){
+             if ('+-÷/*x'.includes(valueArray[0]) === true
+             ){
                 alert('Atenção, a operação começa com um número e não com um operador')
                 calcLimpar();
                 document.calculator.outdisplay.value = '';
@@ -44,7 +49,10 @@ function calcResultado(){
             } else {
                 if ('0123456789.'.includes(valueArray[i]) === true){
                     //Verifica se o usuário digitou mais de um ponto.
-                    if (valueArray[i] === '.' && valueArray[i+1] === valueArray[i] || valueArray[i-1] === valueArray[i]){
+                    if (valueArray[i] == '.' 
+                    && valueArray[i+1] == valueArray[i] 
+                    || valueArray[i-1] == valueArray[i] 
+                    && '0123456789'.includes(valueArray[i]) == false){
                         alert('Atenção, utilize apenas um ponto por número.')
                         calcLimpar();
                         document.calculator.outdisplay.value = '';
@@ -54,10 +62,19 @@ function calcResultado(){
                     }
                     
                 }
-                if ('+-÷/*x'.includes(valueArray[i]) == true ) {
-                    
+                if ('+-÷/*xsct(lnlog%^√!'.includes(valueArray[i]) === true
+                ) {
+                    if ('sct(ln!'.includes(valueArray[i]) === true){
+                        if ('0123456789'.includes(valueArray[i+1]) == true){
+                            stringArray = stringArray + valueArray[i] + ',';
+                        }else{
+                            stringArray = stringArray + valueArray[i];
+                    }
+                        }
+                        
+                        
                     //Tratamento para dois ou mais operadores
-                    if (valueArray[i] == valueArray[i-1] || valueArray[i] == valueArray[i+1] ){
+                    else if (valueArray[i] == valueArray[i-1] || valueArray[i] == valueArray[i+1] ){
                         alert('Atenção, a operação permite apenas 1 operador em sequencia.')
                         calcLimpar();
                         document.calculator.outdisplay.value = '';
@@ -105,21 +122,70 @@ function calcResultado(){
         resDividir = parseFloat(a) / parseFloat(b)
         return resDividir;
     }
+
+    function seno(a) {
+        var rad =  a * Math.PI/180;
+        resSeno = Math. sin(rad);
+        return resSeno;
+    } 
+
+    function cos(a) {
+        var rad =  a * Math.PI/180;
+        resSeno = Math. sin(rad);
+        return resSeno;
+
+    } 
+    function tan(a) {
+        var rad =  a * Math.PI/180;
+        resSeno = Math. tan(rad);
+        return resSeno;
+    }
+
+    function fatorial(a) {
+        xFatorial = parseFloat(a);
+        
+        u = 1;
+        while (u < parseFloat(a)){
+            resFatorial = xFatorial*(parseFloat(a) - u);
+            xFatorial = resFatorial;
+            u++;
+            console.log(u);
+        }
+        return xFatorial;
+    }
+
+    function lnFuncao (a) {
+        resLn = Math.log(parseFloat(a));
+    }
+
+    
     
     
     //refinedArray é a string organizada como array separada por número e operação.
     refinedArray = stringArray.split(',');
     console.log(refinedArray);
+    console.log(valueArray);
+    console.log(stringArray);
     j = 0;
-    const h = (refinedArray[0].match(/./g) || []).length;
-    console.log(h);
+    
     //Esse if irá percorrer o array em busca de um operador para definir a operação
+    if (refinedArray.length == 1){
+        finalResult = refinedArray[0];
+    }
     if (valueArray.length == i) {
         
         while( j < refinedArray.length){
-           
-            if ('+-÷/*x'.includes(refinedArray[j]) === true){
-                if (j == 1) {
+            
+            if ('+-÷/*x!'.includes(refinedArray[j]) === true
+            
+            || refinedArray[j] === 's('
+            || refinedArray[j] === 'c('
+            || refinedArray[j] === 't('
+            || refinedArray[j] === 'ln'
+            || refinedArray[j] === 'log'
+            ){
+                console.log('entrando no if')
+                if (j < 2) {
 
                     if ('+'.includes(refinedArray[j])=== true ){
                         firstResult = soma(refinedArray[j-1],refinedArray[j+1]);
@@ -132,22 +198,60 @@ function calcResultado(){
                         firstResult = dividir(refinedArray[j-1],refinedArray[j+1]);
                     }
 
-                    else if ('*x') {
+                    else if ('*x'.includes(refinedArray[j]) === true) {
                         firstResult = multiplicar(refinedArray[j-1],refinedArray[j+1]);
                     }
-                    
+
+                    else if (refinedArray[j] === 's('
+                    || refinedArray[j] === 'c('
+                    || refinedArray[j] === 't('
+                    || refinedArray[j] === '!'
+                    ){
+                        if (refinedArray.length === 2){
+                        
+                        if (refinedArray[j] === 's(' ){
+                            firstResult = seno(refinedArray[j+1]);
+                            
+                        }
+                        else if ('c('.includes(refinedArray[j]) === true){
+                            firstResult = cos(refinedArray[j+1]);
+                            
+                        }
+
+                        else if ('t('.includes(refinedArray[j]) === true){
+                            firstResult = tan(refinedArray[j+1]);
+                            
+                        }
+                        else if ('!'.includes(refinedArray[j]) === true){
+                            firstResult = fatorial(refinedArray[j+1]);
+
+                        }
+                        else if ('ln'.includes(refinedArray[j])===true){
+                            firstResult = lnFuncao(refinedArray[j+1]);
+
+                        }
+                        else if ('log'.includes(refinedArray[j])===true){
+                            firstResult = logFuncao(refinedArray[j+1]);
+
+                        }
+
+                        } else {
+                            alert('Atenção utilize apenas o operador e o número!!');
+                            calcLimpar();
+                            document.calculator.outdisplay.value = '';
+                        }
+                    }
+             
                     interResult = firstResult;
                     finalResult = firstResult;
                     }
-                   
-                
                 console.log(interResult); 
                 if (j > 2){
-                    console.log("entrou no if j>2")
+                    
                     if ('+'.includes(refinedArray[j]) === true){
                         finalResult = soma(interResult,refinedArray[j+1]);
                         interResult = finalResult;
-                        console.log(interResult);
+                        
                     }
 
                     else if ('-'.includes(refinedArray[j])=== true ){
@@ -159,22 +263,30 @@ function calcResultado(){
                         interResult = finalResult;
                     }
 
-                    else if ('*x') {
+                    else if ('*x'.includes(refinedArray[j]) ===true ) {
                         finalResult = multiplicar(interResult,refinedArray[j+1]);
                         interResult = finalResult;
                     }
+
                     
+                    else {
+                        
+                    } 
 
 
                 } 
                 
-            }
+            } else if (isNaN(refinedArray[j]) == true){
+                alert("Atenção você utilizou um operador inválido")
+            } 
+            //Aqui vai para funções sen cos tan e etc
             j++;
         }
     
     }
     document.calculator.outdisplay.value = document.calculator.display.value + " = " +  finalResult;
     console.log(finalResult);
+    finalResult = 0;
 
 }
 
