@@ -6,7 +6,7 @@ function readValue(valor){
 //Limpa o display
 function calcLimpar(){
     document.calculator.display.value ='';
-    document.calculator.outdisplay.value = ''
+    
 }
 function backSpace() {
     oldTxt = document.calculator.display.value
