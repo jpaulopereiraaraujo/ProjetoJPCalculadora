@@ -136,8 +136,8 @@ function calcResultado(){
 
     function cos(a) {
         var rad =  a * Math.PI/180;
-        resSeno = Math. sin(rad);
-        return resSeno;
+        resCosseno = Math. cos(rad);
+        return resCosseno;
 
     } 
     function tan(a) {
