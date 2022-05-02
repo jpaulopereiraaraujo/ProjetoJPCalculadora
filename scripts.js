@@ -181,7 +181,7 @@ function calcResultado(){
         return resPorcent;
     }
 
-    function raizNum (b,a) {
+    function raizNum (a,b) {
         raizResult = Math.pow(b, (1/a));
         return raizResult;
     }
