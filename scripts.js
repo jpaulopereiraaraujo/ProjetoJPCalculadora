@@ -119,7 +119,7 @@ function calcResultado(){
     }
 
     function multiplicar(a,b){
-        resMultiplicar = parseFloat(a) * parseFloat(b)
+        resMultiplicar = (parseFloat(a) * parseFloat(b))
         return resMultiplicar;
     }
 
@@ -130,19 +130,19 @@ function calcResultado(){
 
     function seno(a) {
         var rad =  a * Math.PI/180;
-        resSeno = Math. sin(rad);
+        resSeno = (Math. sin(rad)).toFixed(3);
         return resSeno;
     } 
 
     function cos(a) {
         var rad =  a * Math.PI/180;
-        resCosseno = Math. cos(rad);
+        resCosseno = (Math. cos(rad)).toFixed(3);
         return resCosseno;
 
     } 
     function tan(a) {
         var rad =  a * Math.PI/180;
-        resSeno = Math. tan(rad);
+        resSeno = (Math. tan(rad)).toFixed(3);
         return resSeno;
     }
 
@@ -160,12 +160,12 @@ function calcResultado(){
     }
 
     function lnFuncao (a) {
-        resLn = Math.log(parseFloat(a));
+        resLn = (Math.log(parseFloat(a))).toFixed(5);
         return resLn;
     }
 
     function logFuncao (a) {
-        resLog = Math.log10(parseFloat(a));
+        resLog = (Math.log10(parseFloat(a))).toFixed(5);
         return resLog;
     }
 
@@ -182,12 +182,12 @@ function calcResultado(){
     }
 
     function raizNum (a,b) {
-        raizResult = Math.pow(b, (1/a));
+        raizResult = (Math.pow(b, (1/a))).toFixed(5);
         return raizResult;
     }
 
     function expNum (b,a) {
-        expResult = Math.pow(b, a);
+        expResult = (Math.pow(b, a)).toFixed(5);
         return expResult;
     }
 
