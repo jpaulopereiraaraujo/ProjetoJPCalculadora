@@ -181,12 +181,12 @@ function calcResultado(){
         return resPorcent;
     }
 
-    function raizNum (a,b) {
+    function raizNum (b,a) {
         raizResult = Math.pow(b, (1/a));
         return raizResult;
     }
 
-    function expNum (a,b) {
+    function expNum (b,a) {
         expResult = Math.pow(b, a);
         return expResult;
     }
